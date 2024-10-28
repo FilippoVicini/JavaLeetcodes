@@ -1,29 +1,40 @@
-public class main {
-  public static void main() {
-    int[] numbers = new int[] { 1, 2, 4 };
-    int target = 5;
-    twoSum(numbers, target);
+
+class main {
+  public static void main(String[] args) {
+
   }
 
-  public static int[] twoSum(int[] numbers, int target) {
-    int right = numbers.length - 1;
-    int left = 0;
-    int[] nums = new int[2];
-    while (left < right) {
-      int sum = numbers[right] + numbers[left];
-      if (sum == target) {
-        nums[0] = left + 1;
-        nums[1] = right + 1;
-        System.out.print(right + "left" + left);
-        return nums;
-      } else if (sum < target) {
-        left++;
-      } else {
-        right--;
+  public static int[] sum(int[] numbers, int target) {
+    int[] res = new int[2];
+    for (int i = 0; i < numbers.length; i++) {
+      for (int j = i + 1; j < numbers.length; j++) {
+        if (numbers[i] + numbers[j] == target) {
+          res[0] = i;
+          res[1] = j;
+          return res;
+        }
       }
-
     }
-    return nums;
+    return res;
+
   }
 
+  public static int[] sum2(int[] numbers, int target) {
+    int left = 0;
+    int right = numbers.length;
+    int[] res = new int[2];
+
+    while (left < right) {
+      int tmpSum = numbers[left] + numbers[right];
+      if (tmpSum == target) {
+        return res;
+      } else if (tmpSum > target) {
+        right--;
+      } else {
+        left++;
+      }
+    }
+    return res;
+
+  }
 }
